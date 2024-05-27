@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BilateralQueue.cs" />
     <Compile Include="internal\HashFunctions.cs" />
     <Compile Include="AVLTree.cs" />
     <Compile Include="BinaryHeap.cs" />

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MyClasses
 {
-    internal class QueueHandmade<T> : IEnumerable<T>
+    public class BilateralQueue<T> : IEnumerable<T>
     {
         int count;
         int capacity;
@@ -15,7 +15,7 @@ namespace MyClasses
 
         public int Capacity => capacity;
         public int Count => count;
-        public QueueHandmade()
+        public BilateralQueue()
         {
             capacity = 4;
             count = 0;
@@ -23,7 +23,7 @@ namespace MyClasses
             tail = -1;
             head = 0;
         }
-        public QueueHandmade(int length)
+        public BilateralQueue(int length)
         {
             capacity = length;
             count = 0;
@@ -31,7 +31,7 @@ namespace MyClasses
             tail = -1;
             head = 0;
         }
-        public QueueHandmade(IEnumerable<T> elements)
+        public BilateralQueue(IEnumerable<T> elements)
         {
             capacity = 4;
             while (capacity < elements.Count())
@@ -40,7 +40,7 @@ namespace MyClasses
             tail = -1;
             Memory = new T[capacity];
             foreach (var v in elements)
-                Enqueue(v);
+                EnqueueInBack(v);
             head = 0;
         }
         private void Resize()
@@ -80,7 +80,7 @@ namespace MyClasses
             head = head % capacity;
             return retur;
         }
-        public void Enqueue(T element)
+        public void EnqueueInBack(T element)
         {
             count++;
             if (count > capacity)
@@ -90,6 +90,17 @@ namespace MyClasses
             tail++;
             tail = tail % capacity;
             Memory[tail] = element;
+        }
+        public void EnqueueInFront(T element)
+        {
+            count++;
+            if (count > capacity)
+            {
+                Resize();
+            }
+            head--;
+            if (head < 0) head += capacity;
+            Memory[head] = element;
         }
         public bool Contains(T element)
         {
@@ -137,3 +148,4 @@ namespace MyClasses
         }
     }
 }
+
