@@ -43,6 +43,12 @@ namespace MyClasses
                 EnqueueInBack(v);
             head = 0;
         }
+        public void Clear()
+        {
+            tail = -1;
+            head = 0;
+            count = 0;
+        }
         private void Resize()
         {
             T[] memoryLast = Memory;

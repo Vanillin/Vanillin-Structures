@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MyClasses
+namespace MySubstringSearching
 {
     internal interface ISubstringSearch
     {

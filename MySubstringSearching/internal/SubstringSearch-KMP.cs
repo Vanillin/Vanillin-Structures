@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MyClasses
+namespace MySubstringSearching
 {
     internal class SubstringSearch_KMP : ISubstringSearch
     {
