@@ -151,11 +151,6 @@ namespace MyEncryption
                     }
                     newleft = newrigth;
                 }
-
-                //if (newleft == newrigth)
-                //{
-                //    throw new Exception("Symbol is not contained in P");
-                //}
             }
         }
     }

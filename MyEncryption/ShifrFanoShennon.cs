@@ -33,40 +33,6 @@ namespace MyEncryption
             }
             return nodes;
         }
-        static string EncodeString(string inputText, Dictionary<char, string> codes)
-        {
-            StringBuilder encodedText = new StringBuilder();
-
-            foreach (char c in inputText)
-            {
-                if (codes.ContainsKey(c))
-                {
-                    encodedText.Append(codes[c]);
-                }
-            }
-
-            return encodedText.ToString();
-        }
-        static string DecodeString(string encodedText, Dictionary<string, string> codes)
-        {
-            StringBuilder decodedText = new StringBuilder();
-            int index = 0;
-
-            while (index < encodedText.Length)
-            {
-                foreach (var code in codes.Keys)
-                {
-                    if (encodedText.Substring(index).StartsWith(code))
-                    {
-                        decodedText.Append(codes[code]);
-                        index += code.Length;
-                        break;
-                    }
-                }
-            }
-
-            return decodedText.ToString();
-        }
 
         public void Codirov(string Text, out string zacodirText, out Dictionary<string, string> Diction, out int WeightZacodirText)
         {
