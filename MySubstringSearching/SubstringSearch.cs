@@ -5,21 +5,22 @@ namespace MySubstringSearching
 {
     internal interface ISubstringSearch
     {
-        List<int> SearchSubstring(string StringForSearching, string SearchingString);
+        List<int> SearchIndexesSubstring(string StringForSearching, string pattern);
+        bool SearchAvailabSubstring(string StringForSearching, string pattern);
     }
     public enum SubstringSearching
     {
-        BruteForce,
         BoilerMur,
+        BruteForce,
         KMP,
         RabinKarp,
     }
     /// <summary>
-    /// Реализует паттерн одиночки. Для создания используйте статический метод Creating()
+    /// Класс для быстрого поиска подстрок. Реализует паттерн одиночки. (Для создания используйте статический метод Creating())
     /// </summary>
     public class SubstringSearch
     {
-        private List<ISubstringSearch> substringSearches = new List<ISubstringSearch>
+        private ISubstringSearch[] substringSearches = new ISubstringSearch[]
         {
             SubstringSearch_BoilerMur.Creating(),
             SubstringSearch_BruteForce.Creating(),
@@ -33,14 +34,45 @@ namespace MySubstringSearching
             if (ThisClass == null) ThisClass = new SubstringSearch();
             return ThisClass;
         }
-        public List<int> SearchSubstring(SubstringSearching search, string stringForSearching, string pattern)
+        /// <summary>
+        /// Метод поиска подстрок
+        /// </summary>
+        public List<int> SearchIndexesSubstring(string stringForSearching, string pattern)
+        {
+            return substringSearches[0].SearchIndexesSubstring(stringForSearching, pattern);
+        }
+        /// <summary>
+        /// Метод проверки наличия подстроки
+        /// </summary>
+        public bool SearchAvailabSubstring(string stringForSearching, string pattern)
+        {
+            return substringSearches[0].SearchAvailabSubstring(stringForSearching, pattern);
+        }
+        /// <summary>
+        /// Метод поиска подстрок (для сравнивания по времени)
+        /// </summary>
+        public List<int> SearchIndexesSubstring(SubstringSearching search, string stringForSearching, string pattern)
         {
             switch (search)
             {
-                case SubstringSearching.BoilerMur: return substringSearches[0].SearchSubstring(stringForSearching, pattern);
-                case SubstringSearching.BruteForce: return substringSearches[1].SearchSubstring(stringForSearching, pattern);
-                case SubstringSearching.KMP: return substringSearches[2].SearchSubstring(stringForSearching, pattern);
-                case SubstringSearching.RabinKarp: return substringSearches[3].SearchSubstring(stringForSearching, pattern);
+                case SubstringSearching.BoilerMur: return substringSearches[0].SearchIndexesSubstring(stringForSearching, pattern);
+                case SubstringSearching.BruteForce: return substringSearches[1].SearchIndexesSubstring(stringForSearching, pattern);
+                case SubstringSearching.KMP: return substringSearches[2].SearchIndexesSubstring(stringForSearching, pattern);
+                case SubstringSearching.RabinKarp: return substringSearches[3].SearchIndexesSubstring(stringForSearching, pattern);
+                default: throw new ArgumentException("No search");
+            }
+        }
+        /// <summary>
+        /// Метод проверки наличия подстроки (для сравнивания по времени)
+        /// </summary>
+        public bool SearchAvailabSubstring(SubstringSearching search, string stringForSearching, string pattern)
+        {
+            switch (search)
+            {
+                case SubstringSearching.BoilerMur: return substringSearches[0].SearchAvailabSubstring(stringForSearching, pattern);
+                case SubstringSearching.BruteForce: return substringSearches[1].SearchAvailabSubstring(stringForSearching, pattern);
+                case SubstringSearching.KMP: return substringSearches[2].SearchAvailabSubstring(stringForSearching, pattern);
+                case SubstringSearching.RabinKarp: return substringSearches[3].SearchAvailabSubstring(stringForSearching, pattern);
                 default: throw new ArgumentException("No search");
             }
         }

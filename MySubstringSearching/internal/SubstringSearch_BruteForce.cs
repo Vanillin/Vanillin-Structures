@@ -11,15 +11,15 @@ namespace MySubstringSearching
             if (ThisClass == null) ThisClass = new SubstringSearch_BruteForce();
             return ThisClass;
         }
-        public List<int> SearchSubstring(string StringForSearching, string SearchingString)
+        public List<int> SearchIndexesSubstring(string StringForSearching, string pattern)
         {
             List<int> retur = new List<int>();
-            for (int i = 0; i < StringForSearching.Length - SearchingString.Length + 1; i++)
+            for (int i = 0; i < StringForSearching.Length - pattern.Length + 1; i++)
             {
                 bool IsTrue = true;
-                for (int j = 0; j < SearchingString.Length; j++)
+                for (int j = 0; j < pattern.Length; j++)
                 {
-                    if (StringForSearching[i + j] != SearchingString[j])
+                    if (StringForSearching[i + j] != pattern[j])
                     {
                         IsTrue = false;
                         break;
@@ -33,5 +33,25 @@ namespace MySubstringSearching
             return retur;
         }
 
+        public bool SearchAvailabSubstring(string StringForSearching, string pattern)
+        {
+            for (int i = 0; i < StringForSearching.Length - pattern.Length + 1; i++)
+            {
+                bool IsTrue = true;
+                for (int j = 0; j < pattern.Length; j++)
+                {
+                    if (StringForSearching[i + j] != pattern[j])
+                    {
+                        IsTrue = false;
+                        break;
+                    }
+                }
+                if (IsTrue)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

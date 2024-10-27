@@ -11,53 +11,79 @@ namespace MySubstringSearching
             if (ThisClass == null) ThisClass = new SubstringSearch_RabinKarp();
             return ThisClass;
         }
-        private uint step;
-        public List<int> SearchSubstring(string text, string pattern)
+
+        private uint CalculateHash(string s)
+        {
+            uint hash = 0;
+            foreach (char c in s)
+            {
+                hash = ((hash) << 8) + (uint)c;
+            }
+            return hash;
+        }
+        private uint RecalculateHash(uint oldHash, char oldChar, char newChar, uint step)
+        {
+            uint newHash = (((oldHash - (uint)oldChar * step) << 8) + (uint)newChar);
+            return newHash;
+        }
+        public List<int> SearchIndexesSubstring(string StringForSearching, string pattern)
         {
             List<int> indexes = new List<int>();
 
             uint patternHash = CalculateHash(pattern);
-            uint textHash = CalculateHash(text.Substring(0, pattern.Length));
+            uint textHash = CalculateHash(StringForSearching.Substring(0, pattern.Length));
 
-            step = 1;
+            uint step = 1;
             for (int i = 0; i < pattern.Length - 1; i++)
             {
                 step = step << 8;
             }
 
-            if (patternHash == textHash && text.Substring(0, pattern.Length) == pattern)
+            if (patternHash == textHash && StringForSearching.Substring(0, pattern.Length) == pattern)
             {                
                 indexes.Add(0);
             }
-            for (int i = 1; i <= text.Length - pattern.Length; i++)
+            for (int i = 1; i <= StringForSearching.Length - pattern.Length; i++)
             {                
-                if (i <= text.Length - pattern.Length)
+                if (i <= StringForSearching.Length - pattern.Length)
                 {
-                    textHash = RecalculateHash(textHash, text[i - 1], text[i + pattern.Length - 1], pattern.Length);
+                    textHash = RecalculateHash(textHash, StringForSearching[i - 1], StringForSearching[i + pattern.Length - 1], step);
                 }                
-                if (patternHash == textHash && text.Substring(i, pattern.Length) == pattern)
+                if (patternHash == textHash && StringForSearching.Substring(i, pattern.Length) == pattern)
                 {
                     indexes.Add(i);
                 }
             }
             return indexes;
         }
-        private uint CalculateHash(string s)
+
+        public bool SearchAvailabSubstring(string StringForSearching, string pattern)
         {
-            uint hash = 0;
-            
-            foreach (char c in s)
+            uint patternHash = CalculateHash(pattern);
+            uint textHash = CalculateHash(StringForSearching.Substring(0, pattern.Length));
+
+            uint step = 1;
+            for (int i = 0; i < pattern.Length - 1; i++)
             {
-                hash = ((hash) << 8) + (uint)c;
+                step = step << 8;
             }
 
-            return hash;
-        }
-        private uint RecalculateHash(uint oldHash, char oldChar, char newChar, int patternLength)
-        {
-            uint newHash = (((oldHash - (uint)oldChar * step) << 8) + (uint)newChar);
-
-            return newHash;
+            if (patternHash == textHash && StringForSearching.Substring(0, pattern.Length) == pattern)
+            {
+                return true;
+            }
+            for (int i = 1; i <= StringForSearching.Length - pattern.Length; i++)
+            {
+                if (i <= StringForSearching.Length - pattern.Length)
+                {
+                    textHash = RecalculateHash(textHash, StringForSearching[i - 1], StringForSearching[i + pattern.Length - 1], step);
+                }
+                if (patternHash == textHash && StringForSearching.Substring(i, pattern.Length) == pattern)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

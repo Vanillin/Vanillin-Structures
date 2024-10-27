@@ -11,6 +11,7 @@ namespace MySubstringSearching
             if (ThisClass == null) ThisClass = new SubstringSearch_BoilerMur();
             return ThisClass;
         }
+
         private int MaxIndexSymbol(string str)
         {
             int maxSymbols = 0;
@@ -20,8 +21,7 @@ namespace MySubstringSearching
         }
         private void CreateStopSymbols(string SearchingString, out int[] StopSymbols)
         {
-            int length = MaxIndexSymbol(SearchingString);
-            StopSymbols = new int[length];
+            StopSymbols = new int[   MaxIndexSymbol(SearchingString)   ];
             for (int i = SearchingString.Length - 1; i >= 0; i--)
             {
                 int index = SearchingString[i] - 1;
@@ -32,8 +32,7 @@ namespace MySubstringSearching
         }
         private void CreateSuffics(string SearchingString, out int[] Suffics)
         {
-            Suffics = new int[SearchingString.Length];
-
+            Suffics = new int[  SearchingString.Length  ];
             int lastIndex = 0;
 
             for (int shift = 1; shift < SearchingString.Length; shift++)
@@ -54,28 +53,25 @@ namespace MySubstringSearching
                 Suffics[i] = SearchingString.Length;
             }
         }
-        public List<int> SearchSubstring(string StringForSearching, string SearchingString)
+        public List<int> SearchIndexesSubstring(string StringForSearching, string pattern)
         {
             List<int> retur = new List<int>();
 
-            CreateStopSymbols(SearchingString, out int[] StopSimbols);
-            CreateSuffics(SearchingString, out int[] Suffics);
+            CreateStopSymbols(pattern, out int[] StopSimbols);
+            CreateSuffics(pattern, out int[] Suffics);
 
-            for (int i = 0; i < StringForSearching.Length - SearchingString.Length + 1;)
+            for (int i = 0; i < StringForSearching.Length - pattern.Length + 1;)
             {
                 bool IsTrue = true;
                 int equalsCount = 0;
-                for (int j = SearchingString.Length - 1; j >= 0;)
+                for (int j = pattern.Length - 1; j >= 0;)
                 {
-                    if (i > 812226)
-                        _ = 5;
-
-                    if (StringForSearching[i + j] != SearchingString[j])
+                    if (StringForSearching[i + j] != pattern[j])
                     {
                         char c = StringForSearching[i + j];
                         int indexChar = c - 1;
 
-                        int shift = SearchingString.Length - equalsCount;
+                        int shift = pattern.Length - equalsCount;
                         if (indexChar < StopSimbols.Length && StopSimbols[indexChar] != 0)
                             shift = StopSimbols[indexChar] - equalsCount;
 
@@ -101,5 +97,45 @@ namespace MySubstringSearching
             return retur;
         }
 
+        public bool SearchAvailabSubstring(string StringForSearching, string pattern)
+        {
+            CreateStopSymbols(pattern, out int[] StopSimbols);
+            CreateSuffics(pattern, out int[] Suffics);
+
+            for (int i = 0; i < StringForSearching.Length - pattern.Length + 1;)
+            {
+                bool IsTrue = true;
+                int equalsCount = 0;
+                for (int j = pattern.Length - 1; j >= 0;)
+                {
+                    if (StringForSearching[i + j] != pattern[j])
+                    {
+                        char c = StringForSearching[i + j];
+                        int indexChar = c - 1;
+
+                        int shift = pattern.Length - equalsCount;
+                        if (indexChar < StopSimbols.Length && StopSimbols[indexChar] != 0)
+                            shift = StopSimbols[indexChar] - equalsCount;
+
+                        if (equalsCount != 0 && shift < Suffics[equalsCount - 1])
+                            shift = Suffics[equalsCount];
+
+                        i += shift;
+                        IsTrue = false;
+                        break;
+                    }
+                    else
+                    {
+                        equalsCount++;
+                        j--;
+                    }
+                }
+                if (IsTrue)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
