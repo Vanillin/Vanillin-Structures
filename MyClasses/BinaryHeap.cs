@@ -56,10 +56,7 @@ namespace MyClasses
             if (length == 0)
                 return;
 
-            T memory = array[0];
-            array[0] = array[length - 1];
-            array[length - 1] = memory;
-
+            (array[length - 1], array[0]) = (array[0], array[length - 1]);
             length--;
             Heapify(0, length);
         }
@@ -106,10 +103,7 @@ namespace MyClasses
 
             if (array[index].CompareTo(array[indexMax]) < 0)
             {
-                T memory = array[index];
-                array[index] = array[indexMax];
-                array[indexMax] = memory;
-
+                (array[indexMax], array[index]) = (array[index], array[indexMax]);
                 Heapify(indexMax, length);
             }
         }
@@ -118,10 +112,7 @@ namespace MyClasses
             int indexParent = (index - 1) / 2;
             if (array[index].CompareTo(array[indexParent]) > 0)
             {
-                T memory = array[index];
-                array[index] = array[indexParent];
-                array[indexParent] = memory;
-
+                (array[indexParent], array[index]) = (array[index], array[indexParent]);
                 if (indexParent != 0)
                     ReverseHeapify(indexParent, length);
             }
@@ -130,10 +121,7 @@ namespace MyClasses
         {
             for (int l = array.Length - 1; l >= 0; l--)
             {
-                T memory = array[0];
-                array[0] = array[l];
-                array[l] = memory;
-
+                (array[l], array[0]) = (array[0], array[l]);
                 Heapify(0, l - 1);
             }
             array.Reverse();

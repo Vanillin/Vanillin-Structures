@@ -47,6 +47,8 @@
     <Compile Include="BinaryHeap.cs" />
     <Compile Include="BinaryHeapWithIndexer.cs" />
     <Compile Include="HashTableCuckoo.cs" />
+    <Compile Include="LinkedList.cs" />
+    <Compile Include="internal\NodeLinkedList.cs" />
     <Compile Include="SkipList.cs" />
     <Compile Include="internal\NodeAVLTree.cs" />
     <Compile Include="internal\NodeSkipList.cs" />

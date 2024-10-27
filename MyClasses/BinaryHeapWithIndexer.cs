@@ -33,7 +33,7 @@ namespace MyClasses
             this.indexes = new int?[array.Length];
             for (int i = 0; i < array.Length; i++)
             {
-                this.array[i] = new NodeBinaryHeapWithIndexer<T>( array[i], indexes[i]);
+                this.array[i] = new NodeBinaryHeapWithIndexer<T>(array[i], indexes[i]);
                 if (this.indexes[indexes[i]] != null)
                     throw new ArgumentException();
                 this.indexes[indexes[i]] = i;
@@ -87,7 +87,7 @@ namespace MyClasses
             }
             if (indexes[index] != null)
                 throw new ArgumentException();
-            array[length] = new NodeBinaryHeapWithIndexer<T>( item, index);
+            array[length] = new NodeBinaryHeapWithIndexer<T>(item, index);
             indexes[index] = length;
             length++;
 
@@ -117,7 +117,7 @@ namespace MyClasses
             {
                 Heapify(i, array.Length);
             }
-        }       
+        }
         private void Heapify(int index, int length)
         {
             int leftChild = 2 * index + 1;

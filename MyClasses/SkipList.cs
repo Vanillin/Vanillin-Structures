@@ -45,7 +45,6 @@ namespace MyClasses
             ProbabilityLevel = new double[NumberLevel];
             for (int i = 0; i < NumberLevel; i++)
             {
-                //ProbabilityLevel[i] = Math.Pow(2, i) / Math.Pow(2, NumberLevel - 1);
                 ProbabilityLevel[i] = probablity;
             }
 

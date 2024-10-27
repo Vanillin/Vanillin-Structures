@@ -7,6 +7,7 @@ namespace MyClasses
     public class HashTableCuckoo<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>
     {
         private const double fillFactor = 0.6; //0.7;  //0.85;
+        private const int NumberTriesReCreateHashFunc = 3;
         private NodeHashTable<TKey, TValue>[] hashTable1;
         private NodeHashTable<TKey, TValue>[] hashTable2;
         private IHashFunc<TKey> hashFunc1;
@@ -45,7 +46,7 @@ namespace MyClasses
             capacity = primes.Next();
             hashTable1 = new NodeHashTable<TKey, TValue>[capacity];
             hashTable2 = new NodeHashTable<TKey, TValue>[capacity];
-            _ChangeThis(Changing.OnlyHashFunction);
+            ChangeThis(Changing.OnlyHashFunction);
 
             count = 0;
         }
@@ -73,7 +74,7 @@ namespace MyClasses
             HashFunctionWithTable,
             Resize,
         }
-        private void _ChangeThis(Changing ch)
+        private void ChangeThis(Changing ch)
         {
             if (ch == Changing.OnlyHashFunction)
             {
@@ -91,7 +92,6 @@ namespace MyClasses
             }
         }
 
-        private const int NumberTriesReCreateHashFunc = 3;
         private void CreateHashFunctions(out IHashFunc<TKey> hashFunc1, out IHashFunc<TKey> hashFunc2)
         {
             //Исследования в релизе!
@@ -137,13 +137,13 @@ namespace MyClasses
                 AddMassivKeyValue(hashTable1, out bool IsGood, ref memory, NewHashTable1, NewHashTable2);
                 if (!IsGood)
                 {
-                    _ChangeThis(Changing.OnlyHashFunction);
+                    ChangeThis(Changing.OnlyHashFunction);
                     continue;
                 }
                 AddMassivKeyValue(hashTable2, out IsGood, ref memory, NewHashTable1, NewHashTable2);
                 if (!IsGood)
                 {
-                    _ChangeThis(Changing.OnlyHashFunction);
+                    ChangeThis(Changing.OnlyHashFunction);
                     continue;
                 }
 
@@ -151,7 +151,7 @@ namespace MyClasses
                 hashTable2 = NewHashTable2;
                 return;
             }
-            _ChangeThis(Changing.Resize);
+            ChangeThis(Changing.Resize);
 
 
         }
@@ -209,17 +209,17 @@ namespace MyClasses
                 counter++;
                 if (counter > NumberTriesReCreateHashFunc)
                 {
-                    _ChangeThis(Changing.Resize);
+                    ChangeThis(Changing.Resize);
                     counter = 0;
                 }
                 else
-                    _ChangeThis(Changing.HashFunctionWithTable);
+                    ChangeThis(Changing.HashFunctionWithTable);
                 AddKeyValue(key, value, out IsGood, hashTable1, hashTable2);
             }
             count++;
 
             if ((double)count / (capacity * 2) > fillFactor)
-                _ChangeThis(Changing.Resize);
+                ChangeThis(Changing.Resize);
         }
         private void AddKeyValue(TKey key, TValue value, out bool IsGood, 
             NodeHashTable<TKey, TValue>[] hashT1, NodeHashTable<TKey, TValue>[] hashT2)

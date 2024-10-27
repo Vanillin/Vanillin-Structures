@@ -122,8 +122,7 @@ namespace MyClasses
                 else
                     parent.RightChildren = null;
 
-                NodeAVLTree<TKey, TValue> fromBalance;
-                ChangeWeigthFromNodeToRoot(parent, out fromBalance);
+                ChangeWeigthFromNodeToRoot(parent, out NodeAVLTree<TKey, TValue> fromBalance);
                 if (fromBalance != null)
                     BalanceTreeAroundNode(fromBalance);
             }
@@ -154,8 +153,7 @@ namespace MyClasses
                     parent.RightChildren = left;
                 left.Parent = parent;
 
-                NodeAVLTree<TKey, TValue> fromBalance;
-                ChangeWeigthFromNodeToRoot(parent, out fromBalance);
+                ChangeWeigthFromNodeToRoot(parent, out NodeAVLTree<TKey, TValue> fromBalance);
                 if (fromBalance != null)
                     BalanceTreeAroundNode(fromBalance);
             }
@@ -172,8 +170,7 @@ namespace MyClasses
                     parent.RightChildren = right;
                 right.Parent = parent;
 
-                NodeAVLTree<TKey, TValue> fromBalance;
-                ChangeWeigthFromNodeToRoot(parent, out fromBalance);
+                ChangeWeigthFromNodeToRoot(parent, out NodeAVLTree<TKey, TValue> fromBalance);
                 if (fromBalance != null)
                     BalanceTreeAroundNode(fromBalance);
             }
@@ -279,8 +276,7 @@ namespace MyClasses
                 VecC.Parent = VecA;
 
             //проверка на правильность
-            NodeAVLTree<TKey, TValue> fromBalance;
-            ChangeWeigthFromNodeToRoot(VecA, out fromBalance);
+            ChangeWeigthFromNodeToRoot(VecA, out NodeAVLTree<TKey, TValue> fromBalance);
             if (fromBalance != null)
                 BalanceTreeAroundNode(fromBalance);
         }
@@ -330,8 +326,7 @@ namespace MyClasses
             BalanceTreeAroundNode(VecA);
             BalanceTreeAroundNode(VecB);
 
-            NodeAVLTree<TKey, TValue> fromBalance;
-            ChangeWeigthFromNodeToRoot(VecC, out fromBalance);
+            ChangeWeigthFromNodeToRoot(VecC, out NodeAVLTree<TKey, TValue> fromBalance);
             if (fromBalance != null)
                 BalanceTreeAroundNode(fromBalance);
 
@@ -356,8 +351,7 @@ namespace MyClasses
                 VecC.Parent = VecA;
 
             //проверка на правильность
-            NodeAVLTree<TKey, TValue> fromBalance;
-            ChangeWeigthFromNodeToRoot(VecA, out fromBalance);
+            ChangeWeigthFromNodeToRoot(VecA, out NodeAVLTree<TKey, TValue> fromBalance);
             if (fromBalance != null)
                 BalanceTreeAroundNode(fromBalance);
         }
@@ -407,8 +401,7 @@ namespace MyClasses
             BalanceTreeAroundNode(VecA);
             BalanceTreeAroundNode(VecB);
 
-            NodeAVLTree<TKey, TValue> fromBalance;
-            ChangeWeigthFromNodeToRoot(VecC, out fromBalance);
+            ChangeWeigthFromNodeToRoot(VecC, out NodeAVLTree<TKey, TValue> fromBalance);
             if (fromBalance != null)
                 BalanceTreeAroundNode(fromBalance);
 
