@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySubstringSearching", "MyS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEncryption", "MyEncryption\MyEncryption.csproj", "{3392A42E-4F04-4456-B4FA-635FCCDBBA27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecodeShifrVizhener", "DecodeShifrVizhener\DecodeShifrVizhener.csproj", "{0A0654AF-3986-4FB6-A84C-35C3C755EA62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3392A42E-4F04-4456-B4FA-635FCCDBBA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3392A42E-4F04-4456-B4FA-635FCCDBBA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3392A42E-4F04-4456-B4FA-635FCCDBBA27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A0654AF-3986-4FB6-A84C-35C3C755EA62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A0654AF-3986-4FB6-A84C-35C3C755EA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A0654AF-3986-4FB6-A84C-35C3C755EA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A0654AF-3986-4FB6-A84C-35C3C755EA62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
