@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ArrayOfCatalogItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CatalogItem>
+    <Number>89011342335</Number>
+    <Name>Rowan</Name>
+    <SecondName>/</SecondName>
+  </CatalogItem>
+  <CatalogItem>
+    <Number>89011342336</Number>
+    <Name>Becca</Name>
+    <SecondName>?</SecondName>
+  </CatalogItem>
+  <CatalogItem>
+    <Number>89012131234</Number>
+    <Name>dsgfsdhf</Name>
+    <SecondName>dfg</SecondName>
+  </CatalogItem>
+</ArrayOfCatalogItem>
