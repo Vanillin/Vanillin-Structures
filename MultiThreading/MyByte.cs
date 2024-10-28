@@ -25,7 +25,7 @@ namespace MultiThreading
         }
         private MyByte(int[] Bytes)
         {
-            foreach(int b in Bytes)
+            foreach (int b in Bytes)
             {
                 if (b != 0 && b != 1) throw new ArgumentException("Неверно задан MyByte");
             }

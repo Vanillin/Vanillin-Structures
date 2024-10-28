@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace DecodeShifrVizhener
 {
@@ -100,7 +97,7 @@ namespace DecodeShifrVizhener
             {
                 Console.WriteLine("---------");
                 int count = 0;
-                foreach ( var doub in list)
+                foreach (var doub in list)
                 {
                     double print = doub.Item2;
                     if (print < 0.015)
@@ -144,9 +141,9 @@ namespace DecodeShifrVizhener
                 {
                     case 1:
                         {
-                            string path = ReadConsoleString("Введите полный путь к файлу");                            
+                            string path = ReadConsoleString("Введите полный путь к файлу");
                             int N = ReadConsoleInt("Введите N");
-                            using (StreamReader sr = new StreamReader(path)) 
+                            using (StreamReader sr = new StreamReader(path))
                             {
                                 decoder = new Decoder(sr.ReadToEnd(), N);
                             }
@@ -179,7 +176,7 @@ namespace DecodeShifrVizhener
                     case 6:
                         {
                             if (decoder == null) Console.WriteLine("Текст не прочитан");
-                            else decoder.ChangeShiftOnMas(ReadConsoleInt("K"), ReadConsoleInt("N"));                            
+                            else decoder.ChangeShiftOnMas(ReadConsoleInt("K"), ReadConsoleInt("N"));
                             break;
 
                         }
@@ -216,7 +213,7 @@ namespace DecodeShifrVizhener
                 Console.ReadKey();
                 p = ShowMenu(menu, ref position);
             }
-        }        
+        }
     }
 }
 

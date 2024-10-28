@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DecodeShifrVizhener
 {
@@ -17,8 +14,8 @@ namespace DecodeShifrVizhener
 
         public Decoder(string text, int n)
         {
-            alfavit = new char[] { 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 
-                'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 
+            alfavit = new char[] { 'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й',
+                'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш',
                 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я', ' ', ',', '.'};
 
             var memoryText = text.ToCharArray().ToList();
@@ -62,7 +59,7 @@ namespace DecodeShifrVizhener
                 for (int i = 0; i < doubles.Count; i++)
                 {
                     double print = Math.Round(doubles[i], 2);
-                    currentList.Add((alfavit[i],print));
+                    currentList.Add((alfavit[i], print));
                 }
                 retur.Add(currentList);
             }
@@ -81,8 +78,8 @@ namespace DecodeShifrVizhener
             Shifts[K] += N;
         }
         public void ChangeAllShiftOnMas()
-        {   
-            for ( int i = 0; i < Shifts.Length; i++)
+        {
+            for (int i = 0; i < Shifts.Length; i++)
             {
                 ChangeShiftOnMas(i, -1);
             }
@@ -112,6 +109,6 @@ namespace DecodeShifrVizhener
                 Shifts[i] -= maxDoubleIndex;
             }
         }
-        
+
     }
 }
