@@ -43,11 +43,13 @@
   <ItemGroup>
     <Compile Include="BilateralQueue.cs" />
     <Compile Include="Combinatoric.cs" />
+    <Compile Include="Dictionary.cs" />
     <Compile Include="internal\HashFunctions.cs" />
     <Compile Include="AVLTree.cs" />
     <Compile Include="BinaryHeap.cs" />
     <Compile Include="BinaryHeapWithIndexer.cs" />
     <Compile Include="HashTableCuckoo.cs" />
+    <Compile Include="internal\NodeDictionary.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="internal\NodeLinkedList.cs" />
     <Compile Include="SkipList.cs" />
